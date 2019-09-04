@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+				user-select:none;
+				cursor: pointer;
+			}
+
+			.no1-enter,
+			.no1-leave-to {
+				opacity: 0;
+				top: 100px !important;
+			}
+			
+			.no1-enter-active,
+			.no1-leave-active {
+				transition: .35s;
+			}
+			.no2-enter,
+			.no2-leave-to {
+				opacity: 0;
+				left: -80px !important;
+			}
+			
+			.no2-enter-active,
+			.no2-leave-active {
+				transition: .35s;
+			}
+			.no3-enter,
+			.no3-leave-to {
+				opacity: 0;
+				top: 100px !important;
+			}
+
+			.no3-enter-active,
+			.no3-leave-active {
+				transition: .35s;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<wzr></wzr>
+		</div>
+		<template id="wzr">
+			<div>
+				<div @click="s_btn" style="line-height:60px;color:#fff;text-align: center;background: #000;" id='ind'>
+					首页
+				</div>
+				<transition :name="t_t">
+					<div style="width:100%;background:#000;position: absolute;top:60px;left:0;z-index: 2;" v-show="no1_t">
+						<div v-for="i in arr" style="color:#fff;line-height:40px;position:relative;text-align: center;">
+							{{i.title}} <span style="position: absolute;top: 0;right: 100px;" v-if="i.arr.length" @click="f_btn(i.arr)">></span>
+						</div>
+					</div>
+				</transition>
+				<transition name='no3'>
+					<div style="width:100%;background:#000;position: absolute;top:60px;left:0;" v-show="no2_t">
+						<div style="color:#fff;line-height:40px;position:relative;text-align: center;">
+							<span @click="r_btn">返回上一级</span>
+						</div>
+						<div v-for="i in f_arr" style="color:#fff;line-height:40px;position:relative;text-align: center;">
+							{{i}}
+						</div>
+					</div>
+				</transition>
+			</div>
+		</template>
+	</body>
+	<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		Vue.component('wzr', {
+			template: '#wzr',
+			data() {
+				return {
+					t_t: 'no1',
+					no1_t: false,
+					no2_t: false,
+					f_arr:'',
+					arr: [{
+							title: '信息',
+							arr: []
+						},
+						{
+							title: '列表',
+							arr: ['列表1', '列表2', '列表3']
+						},
+						{
+							title: '关于',
+							arr: ['公司背景', '公司规划', '公司缺人']
+						},
+						{
+							title: '结尾',
+							arr: []
+						}
+					]
+				}
+			},
+			methods: {
+				s_btn() {
+					var osy=document.querySelector('#ind')
+					if(!this.no1_t){
+						osy.innerHTML='关闭'
+					}else{
+						osy.innerHTML='首页'
+					}
+					if(this.no2_t){
+						this.no2_t=false
+					}else{
+						this.t_t = 'no1'
+						this.no1_t = !this.no1_t
+					}
+				},
+				f_btn(arr) {
+					this.t_t='no2'
+					this.f_arr=arr
+					this.no1_t=false
+					setTimeout(()=>{
+						this.no2_t=true
+					},200)
+				},
+				r_btn(){
+					this.no2_t=false
+					this.no1_t = true
+				}
+			}
+		})
+		new Vue({
+			el: '#box'
+		})
+	</script>
+</html>

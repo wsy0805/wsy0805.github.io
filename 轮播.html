@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.lee-enter{
+				left:800px !important;
+				opacity: 0;
+			}
+			.lee-enter-active,.lee-leave-active{
+				transition: 1s;
+			}
+			.lee-leave-to{
+				left:-800px !important;
+				opacity: 0;
+			}
+			.lee2-enter{
+				left:-800px !important;
+				opacity: 0;
+			}
+			.lee2-enter-active,.lee2-leave-active{
+				transition: 1s;
+			}
+			.lee2-leave-to{
+				left:800px !important;
+				opacity: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<www style="text-align: center;"></www>
+		</div>
+		<template id="www">
+			<div>
+				<button @click="prebtn">上一个</button>
+				{{type}}
+				<button @click="nextbtn">下一个</button>
+				<div style="width:800px;position: relative;margin:0 auto;">
+					<transition :name='t_t' v-for="(i,$index) in arr">
+						<img :src="i" alt="" width="800px;" style="position: absolute;left:0;top:0;" v-show="type==$index">
+					</transition>
+				</div>
+			</div>
+		</template>
+	</body>
+	<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		Vue.component('www',{
+			template:'#www',
+			data(){
+				return {
+					type:0,
+					t_t:'lee',
+					arr:[
+						'http://f.hiphotos.baidu.com/image/h%3D300/sign=0c78105b888ba61ec0eece2f713597cc/0e2442a7d933c8956c0e8eeadb1373f08202002a.jpg',
+						'http://f.hiphotos.baidu.com/image/h%3D300/sign=d985fb87d81b0ef473e89e5eedc551a1/b151f8198618367aa7f3cc7424738bd4b31ce525.jpg',
+						'http://b.hiphotos.baidu.com/image/h%3D300/sign=05b297ad39fa828bce239be3cd1e41cd/0eb30f2442a7d9337119f7dba74bd11372f001e0.jpg',
+					]
+				}
+			},
+			methods:{
+				nextbtn(){
+					this.t_t='lee'
+					this.type++;
+					if(this.type>=this.arr.length){
+						this.type=0
+					}
+				},
+				prebtn(){
+					this.t_t='lee2'
+					this.type--;
+					if(this.type<=-1){
+						this.type=this.arr.length-1
+					}
+				}
+			}
+		})
+		new Vue({
+			el:'#box',
+		})
+	</script>
+</html>
