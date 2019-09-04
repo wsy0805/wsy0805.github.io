@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{margin:0; padding: 0; list-style-type: none;}
+        html{
+            height:100vh;
+            width:100vw;
+            overflow: hidden;
+        }
+        .item{
+            border:1px #000 dotted;
+            position:absolute;
+        }
+        p{
+            position:absolute;
+            top:20px;
+            right:100px;
+        }
+    </style>
+</head>
+<body>
+    <p>任意位置画盒子</p>
+    <script>
+        document.onmousedown=(e)=>{
+            let evt=e || event;
+            let newx=evt.clientX;
+            let newy=evt.clientY;
+            let div=document.createElement('div');
+            div.className='item';
+            document.body.appendChild(div);
+            document.onmousemove=(e)=>{
+                let evt=e || event;
+                let moveX=evt.clientX;
+                let moveY=evt.clientY;
+                console.log(moveX)
+                div.style.left = moveX>newx?newx+'px':moveX+'px';
+			    div.style.top = moveY>newy?newy+'px':moveY+'px';
+                div.style.width = Math.abs(newx-moveX)+'px';
+			    div.style.height = Math.abs(newy-moveY)+'px';
+            }
+            document.onmouseup=()=>{
+                document.onmousemove=null;
+                div.style.transition='.35s';
+                div.style.backgroundColor=bgrandom();
+                div.style.border='1px solid #000';
+            }
+            return false;
+            evt.preventDefault();
+        }
+        let bgrandom=()=>{
+            return `rgba(${parseInt(Math.random()*256)},${parseInt(Math.random()*256)},${parseInt(Math.random()*256)})`
+        }
+    </script>
+</body>
+</html>
