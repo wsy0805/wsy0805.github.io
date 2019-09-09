@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		 crossorigin="anonymous">
+		 <style>
+			 [v-cloak]{
+				 display: none;
+			 }
+			 .ullist{
+				 list-style: none;
+			 }
+			 .ullist>li{
+				 text-align: center;
+				 height:60px;
+				 line-height:60px;
+			 }
+		 </style>
+	</head>
+	<body>
+		<div id="box" class="container" style="margin:10px auto;" v-cloak>
+			<div class="row" style="background:#ccc;margin-bottom:10px;padding:10px 0">
+				<div class="col-md-2 col-sm-2 col-xs-2 col-md-offset-10 col-sm-offset-10 col-xs-offset-10 ">
+					<button class="btn btn-info" data-toggle="modal" data-target="#myModal">购物车</button>
+				</div>
+			</div>
+			<div class="row" style="border: 1px #ccc solid;min-height: 300px;padding:10px 0">
+				<div class="col-md-4 col-sm-6 col-xs-12" v-for="i in arr">
+					<div class="thumbnail" style="overflow: hidden;">
+						<div style="width:100%;height:300px;background:#ccc">
+							<img :src="i.im" alt="" style="width:100%;height:100%">
+						</div>
+						<div class="caption">
+							<h3>{{i.n}}</h3>
+							<p>价格{{i.j}}</p>
+							<p><a href="javascript:;" class="btn btn-info" role="button" style="float: right;" @click="insert_arr(i)">加入购物车</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 模态框 -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">购物车</h4>
+						</div>
+						<div class="modal-body">
+							<div v-if="g_arr.length">
+								<ul class="row ullist">
+									<li class="col-md-2 col-sm-2 col-xs-2">商品</li>
+									<li class="col-md-2 col-sm-2 col-xs-2">价格</li>
+									<li class="col-md-3 col-sm-2 col-xs-2">数量</li>
+									<li class="col-md-2 col-sm-2 col-xs-2">小计</li>
+									<li class="col-md-2 col-sm-2 col-xs-2">删除</li>
+								</ul>
+								<div style="height: 280px;overflow-y: scroll;">
+									<div v-for="i in t_g_arr" style="width: 97%;">
+										<h4>{{i}}</h4>
+										<ul class="row ullist" v-for="a in g_arr" v-if="i==a.t">
+											<li class="col-md-2 col-sm-2 col-xs-2">{{a.n}}</li>
+											<li class="col-md-2 col-sm-2 col-xs-2">{{a.j}}</li>
+											<li class="col-md-3 col-sm-3 col-xs-3">
+												<span class="btn" @click="spt(a.uid)">-</span>
+												{{a.s}}
+												<span class="btn" @click="add(a.uid)">+</span>
+											</li>
+											<li class="col-md-2 col-sm-2 col-xs-2">{{a.j*a.s}}</li>
+											<li class="col-md-2 col-sm-2 col-xs-2"><button class="btn btn-danger" @click="remove(a.uid)">移除</button></li>
+										</ul>
+									</div>
+								</div>
+								<div style="padding-bottom:50px;text-align: right;padding-right:50px;">
+									总计:{{prize}}元
+								</div>
+							</div>
+							<div v-else style="line-height:160px;text-align: center;">暂时没有数据</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary">支付</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--  -->
+		</div>
+	</body>
+	<script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	 crossorigin="anonymous"></script>
+	<script src="vue.js"></script>
+	<script>
+		new Vue({
+			el:'#box',
+			data: {
+				g_arr: [],
+				arr: [{
+						uid: 0,
+						n: '苹果',
+						t: '水果',
+						j: 10,
+						im:'img/6.jpg',
+					},
+					{
+						uid: 1,
+						n: '雪梨',
+						t: '水果',
+						j: 5,
+						im:'img/7.jpg',
+					},
+					{
+						uid: 2,
+						n: '衣柜',
+						t: '家具',
+						j: 999,
+						im:'img/8.jpg',
+					},
+					{
+						uid: 3,
+						n: '立式衣架',
+						t: '家具',
+						j: 199,
+						im:'img/9.jpg',
+					},
+					{
+						uid: 4,
+						n: '小米8',
+						t: '电子产品',
+						j: 2699,
+						im:'img/6.jpg',
+					},
+					{
+						uid: 5,
+						n: '华为 p3',
+						t: '电子产品',
+						j: 5499,
+						im:'img/10.jpg',
+					},
+				]
+			},
+			methods:{
+				insert_arr(json){
+					var type=true;
+					for(var i=0;i<this.g_arr.length;i++){
+						if(this.g_arr[i].uid==json.uid){
+							type=false;
+							var num=this.g_arr[i].s;
+							num++;
+							this.$set(this.g_arr[i],'s',num)
+						}
+					}
+					if(type){
+						this.$set(json,'s',1);
+						this.g_arr.push(json)
+					}
+				},
+				spt(uid){
+					for(var i=0;i<this.g_arr.length;i++){
+						if(this.g_arr[i].uid==uid){
+							var num=this.g_arr[i].s;
+							num--;
+							if(num<=0){
+								num=1
+							}
+							this.$set(this.g_arr[i],'s',num)
+						}
+					}
+				},
+				add(uid){
+					for(var i=0;i<this.g_arr.length;i++){
+						if(this.g_arr[i].uid==uid){
+							var num=this.g_arr[i].s;
+							num++;
+							this.$set(this.g_arr[i],'s',num)
+						}
+					}
+				},
+				remove(uid){
+					for(var i=0;i<this.g_arr.length;i++){
+						if(this.g_arr[i].uid==uid){
+							this.g_arr.splice(i,1)
+						}
+					}
+				}
+			},
+			computed:{
+				t_g_arr(){
+					var arr=[];
+					for(var i=0;i<this.g_arr.length;i++){
+						if(arr.indexOf(this.g_arr[i].t)==-1){
+							arr.push(this.g_arr[i].t)
+						}
+					}
+					return arr
+				},
+				prize(){
+					var num=0
+					for(var i=0;i<this.g_arr.length;i++){
+						num+=this.g_arr[i].j*this.g_arr[i].s
+					}
+					return num
+				}
+			}
+		})
+	</script>
+</html>
