@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>QQ音乐</title><link rel="icon" href="qqmusic.jpg" >
+	<link rel="stylesheet" href="bower_components/swiper/dist/css/swiper.min.css">
+	<script src="js/flexible.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/flexible_css.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" href="style/music.css" type="text/css">
+	<link rel="stylesheet" href="font/iconfont.css" type="text/css">
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+	<!-- 首页 -->
+	<div class="index">
+		<div class="gl-header">
+			<div class="gl-title">音乐馆</div>
+			<div class="gl-search">
+				<input type="search" class="font" placeholder="&#xe615; 搜索">
+			</div>
+			<span class="font gl-icon">&#xe885;</span>
+		</div>
+		<!-- 轮播图 -->
+		<div class="swiper-container in-banner">
+		    <div class="swiper-wrapper"></div>
+		    <!-- 如果需要分页器 -->
+		    <div class="swiper-pagination"></div>
+		</div>
+		<!-- <div class="in-banner">
+			<ul><li></li></ul>
+			<ol></ol>
+			<div class="load">加载中...</div>
+		</div> -->
+		<!-- 一排绿图标 -->
+		<ul class="gl-icon-box">
+			<li>
+				<i class="font u-wrap-icon">&#xe60b;</i>
+				<p>歌手</p>
+			</li>
+			<li class="rank">
+				<i class="font u-wrap-icon">&#xe608;</i>
+				<p>排行</p>
+			</li>
+			<li>
+				<i class="font u-wrap-icon">&#xe617;</i>
+				<p>分类歌单</p>
+			</li>
+			<li>
+				<i class="font u-wrap-icon">&#xe60f;</i>
+				<p>电台</p>
+			</li>
+			<li>
+				<i class="font u-wrap-icon">&#xe767;</i>
+				<p>一起听</p>
+			</li>
+		</ul>
+		<!-- 个性电台 -->
+		<div class="g-comd">
+			<div class="m-comd-lt">
+				<img src="img/shouye/lt.jpg" alt="">
+				<div class="u-comd-jd">▶</div>
+				<p class="u-comd-style">个性电台</p>
+			</div>
+			<div class="m-comd-gt">
+				<div class="m-cdgt-item">
+					<div class="m-comd-cont">
+						<p class="u-comd-title">新歌新碟</p>
+						<p class="u-comd-text">糟了！是心动的感觉</p>
+					</div>
+					<div class="u-comd-pic">
+						<img src="img/shouye/gt.jpg" alt="">
+					</div>
+				</div>
+				<div class="m-cdgt-item">
+					<div class="m-comd-cont">
+						<p class="u-comd-title">新歌新碟</p>
+						<p class="u-comd-text">糟了！是心动的感觉</p>
+					</div>
+					<div class="u-comd-pic">
+						<img src="img/shouye/gb.jpg" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 为你推荐歌单 -->
+		<div class="gl-smtitle">
+			<h6>为你推荐歌单</h6>
+			<a href="#">更多 <i class="font">&#xe665;</i></a>
+		</div>
+		<div class="swiper-container img-list">
+		    <div class="swiper-wrapper img-list-cont"></div>
+		</div>
+		<div class="swiper-container img-list">
+		    <div class="swiper-wrapper img-list-cont"></div>
+		</div>
+	</div>
+	<!-- mini播放器 -->
+	<div class="gl-tab">
+		<div class="mini-play">
+			<img src="" alt="">
+			<p>---</p>
+			<!-- 播放 -->
+			<span class="font btn-default btn-bor btn-play" id="mi-play-btn">&#xe61a;</span>
+			<!-- 暂停 -->
+			<span class="hide font btn-default btn-bor btn-pause" id="mi-play-btn">&#xe6db;</span>
+			<i class="font mi-play-list-btn">&#xe717;</i>
+		</div>
+		<ul class="gl-icon-box">
+			<li>
+				<i class="font u-wrap-icon">&#xe6b4;</i>
+				<p>音乐馆</p>
+			</li>
+			<li>
+				<i class="font u-wrap-icon">&#xe614;</i>
+				<p>发现</p>
+			</li>
+			<li>
+				<i class="font u-wrap-icon">&#xe609;</i>
+				<p>我的</p>
+			</li>
+		</ul>
+	</div>
+	<!-- 列表页面 -->
+	<div class="gl-list">
+		<div class="list-header">
+			<div class="menu">
+				<i class="font back-btn">&#xe613;</i>
+				<div class="menu-title">为你推荐歌单</div>
+				<i class="font more-btn">&#xe604;</i>
+			</div>
+			<div class="list-header-time">
+				<span>2019-06-10 <i class="font">&#xe74e;</i></span>
+			</div>
+		</div>
+		<div class="list-btn-box">
+			<span class="playall-btn">
+				<i class="font">&#xe61a;</i>
+				<i>全部播放（<span class="play-counts"></span>）</i>
+			</span>
+		</div>
+		<ul class="music-list">
+			<!-- <li>
+				<span>1</span>
+				<div class="mu-text">
+					<p class="mu-title">灰姑娘</p>
+					<p class="mu-cont">
+						<i class="font icon-dj">&#xe61c;</i>
+						<i class="font icon-sq">&#xe60c;</i>
+						<i class="font icon-hq">&#xe8ab;</i>
+						<span>周杰伦 · 依然范特西</span>
+					</p>
+				</div>
+				<i class="font icon-video">&#xe6bf;</i>
+				<i class="font icon-more">&#xe604;</i>
+			</li> -->
+		</ul>
+	</div>
+	<!-- 排行榜进去列表页面 -->
+	<div class="gl-lists">
+		<div class="list-headers">
+			<div class="menus">
+				<i class="font back-btns">&#xe613;</i>
+				<div class="menu-titles"></div>
+				<i class="font more-btns">&#xe604;</i>
+			</div>
+			<div class="list-header-times">
+				<span>2019-06-10 <i class="font">&#xe74e;</i></span>
+			</div>
+		</div>
+		<div class="list-btn-boxs">
+			<span class="playall-btns">
+				<i class="font">&#xe61a;</i>
+				<i>全部播放（<span class="play-counts"></span>）</i>
+			</span>
+		</div>
+		<ul class="music-list">
+			<!-- <li>
+				<span>1</span>
+				<div class="mu-text">
+					<p class="mu-title">灰姑娘</p>
+					<p class="mu-cont">
+						<i class="font icon-dj">&#xe61c;</i>
+						<i class="font icon-sq">&#xe60c;</i>
+						<i class="font icon-hq">&#xe8ab;</i>
+						<span>周杰伦 · 依然范特西</span>
+					</p>
+				</div>
+				<i class="font icon-video">&#xe6bf;</i>
+				<i class="font icon-more">&#xe604;</i>
+			</li> -->
+		</ul>
+	</div>
+	<!-- 排行 -->
+	<div class="gl-rank">
+		<div class="rank-header">
+			<span class="font rank-return">&#xe613;</span>
+			<h1>QQ音乐排行榜</h1>
+		</div>
+		<div class="rank-container">
+			<!-- 巅峰大字 -->
+			<div class="m-dianfen-hd">
+				<h3>巅峰榜</h3>
+			</div>
+			<!-- 巅峰内容 -->
+			<div class="rank-dianfensum">
+			</div>
+			<!-- 全球榜 -->
+			<div class="rank-local">
+				<div class="m-local-hd">
+					<h3>全球榜</h3>
+				</div>
+				<div class="m-local-cont">
+					<div class="m-local-mrs">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 音乐盒子 -->
+	<div class="play-box">
+		<div class="play-bg"></div>
+		<div class="play-content">
+			<div class="menu">
+				<i class="font down-btn">&#xe600;</i>
+				<div class="menu-title">加载中...</div>
+				<i class="font more-btn">&#xe604;</i>
+			</div>
+			<!-- 切换的区域 -->
+			<div class="play-cont">
+				<!-- 切换的盒子 -->
+				<div class="play-cont-inner">
+					<!-- swiper -->
+					<!-- 封面图 -->
+					<div class="play-cont-item">
+						<p class="singer-name"><span>加载中</span></p>
+						<div class="g-sound">
+							<div class="g-sound-wrap">
+								<div class="m-sound-item">标准<span class="iconfont u-sound-fx">&#xe612;</span></div>
+								<div class="m-sound-item">音效<span class="iconfont u-sound-kg">off</span></div>
+								<div class="m-sound-item">视频<span class="iconfont u-sound-num">4</span></div>
+							</div>
+						</div>
+						<div class="play-singer-pic">
+							<img src=" " alt="">
+						</div>
+					</div>
+					<!-- 歌词 -->
+					<div class="play-cont-item">
+						<div class="lrc-box">
+							<ul class="lrc-inner">
+								<li>歌词加载中...</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="play-dot">
+					<i class="active"></i><i></i>
+				</div>
+			</div>
+			<div class="play-bar">
+				<span class="currentTime">00:00</span>
+				<span class="duratime">00:00</span>
+				<div class="play-line-box">
+					<div class="play-line">
+						<div class="play-line-old">
+							<span></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="play-btns">
+				<div class="play-btn-schema btn-default">
+					<i class="font">&#xe7e6;</i>
+					<i class="font hide">&#xe606;</i>
+					<i class="font hide">&#xe674;</i>
+				</div>
+				<div class="play-btn-change">
+					<!-- 上一曲 -->
+					<span class="font btn-default btn-bor btn-prev">&#xe607;</span>
+					<!-- 播放 -->
+					<span class="font btn-default btn-bor btn-play">&#xe61a;</span>
+					<!-- 暂停 -->
+					<span class="hide font btn-default btn-bor btn-pause">&#xe6db;</span>
+					<!-- 下一曲 -->
+					<span class="font btn-default btn-bor btn-next">&#xe612;</span>
+				</div>
+				<span class="font btn-default btn-playlist">&#xe717;</span>
+			</div>
+		</div>
+		<div class="play-bg play-mask-top"></div>
+		<div class="play-bg play-mask-bottom"></div>
+	</div>
+	<audio ></audio>
+</body>
+<script src="bower_components/swiper/dist/js/swiper.min.js"></script>
+<script src="js/music.js"></script>
+<script src="js/rank.js"></script>
+<script src="js/play-box.js"></script>
+<!-- <script src="js/function.js"></script> -->
+</html>
